@@ -15,9 +15,11 @@ Admin.create = ((admin) => {
 
             if (err) {
                 reject(err)
+                return
             }
             console.log(res, "====");
             resolve(res)
+            return
 
         })
     })
