@@ -1,6 +1,6 @@
 const express = require("express");
-const data = require("./data");
 const app = express();
+const data = require("./data");
 const cors = require("cors");
 const env = require("dotenv")
 
@@ -9,18 +9,17 @@ const { googleAuthorize } = require("./controllers/login.controllers");
 const { GoogleOAuth } = require("./services/GoogleOAuth");
 
 
-env.config({ path: "/config/config.env" })
+env.config({ path: "config/config.env" })
 
 app.use(cors());
-
 // set port, listen for requests
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 7000
 app.use(express.urlencoded({ extended: true })); /* bodyParser.urlencoded() is deprecated */
 app.use(express.json());
 
 /// simple server
 app.get("/", async (req, res) => {
-  res.json({ message: "server connect to local" });
+  res.send({ message: "server connect to local" });
 });
 
 app.get("/signin", async (req, res) => {

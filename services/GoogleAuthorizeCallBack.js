@@ -16,7 +16,7 @@ export const googleAuthorizeCallBack = async (req,res) => {
         redirectionUrl: "http://localhost:3000/",
     });
     const code = req.body.code;
-    console.log("---",code);
+    console.log("code---",code);
     const token = await client.getAccessToken(code);
     console.log("new token---------", token);
     // const userInfo = decodeWithoutVerifying(token?.id_token);

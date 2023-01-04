@@ -33,7 +33,8 @@ Admin.comparePassword = async function (enteredPassword, pass) {
 
 //Return JWT token
 Admin.getJwtToken = function (email) {
-    return jwt.sign({ email: email }, "jllgshllWEUJHGHYJkjsfjds90", {
+    console.log(process.env.JWT_SECRET)
+    return jwt.sign({ email: email }, process.env.JWT_SECRET,{
         expiresIn: "120s"
     })
 }
@@ -54,11 +55,13 @@ Admin.getAdminDetails = (() => {
 
 //find the email using using to get ALL the admin table values
 Admin.findByEmail = (email) => {
+    console.log(email);
     return new Promise((resolve, reject) => {
       sql.query(`SELECT * FROM admin WHERE email = ?`,[email], (err, res) => {
         if (err) {
           return reject(err);
         }
+        console.log(res);
         if(res.length == 0){
           resolve(null);
         }

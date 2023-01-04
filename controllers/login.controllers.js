@@ -92,3 +92,39 @@ exports.googleAuthorize = (req, res) => {
         throw error;
     }
 };
+
+
+exports.OAuthLogin = (async(req, res,next) => {
+    try {
+        const { email, password } = req.body
+         //Check if user entered username and password
+         if (!email || !password) {
+            return next(new ErrorHandler('Please enter email & password', 400))
+        }
+
+
+        let user = await Admin.findByEmail(email);
+        console.log(user);
+
+        if (!user) {
+            return next(new ErrorHandler('Invalid Username or Password', 401))
+        }
+
+        user[0].status = await this.checkUserStatus(user[0])
+
+        //Checks if password is correct or not
+        console.log(password, user[0].password);
+        const isPasswordMatched = await Admin.comparePassword(password, user[0].password)
+        console.log(isPasswordMatched);
+
+        if (!isPasswordMatched) {
+            return next(new ErrorHandler('Invalid Email or Password', 401))
+        }
+        // Emailservice(email,res,next)
+        sendToken(user, 201, res)
+
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+});

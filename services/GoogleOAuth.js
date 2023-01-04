@@ -24,7 +24,12 @@ exports.GoogleOAuth = ({ clientId, clientSecret, redirectionUrl }) => {
 
   const getAccessToken = async (code) => {
     try {
+      // console.log("helo==");
+
       const response = await oauth2Client.getToken(code);
+      console.log("helo1==");
+      console.log("oauth2Client====", oauth2Client);
+
       oauth2Client.setCredentials(response.tokens);
       return response.tokens;
     } catch (error) {
