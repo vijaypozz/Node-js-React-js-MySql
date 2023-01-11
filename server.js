@@ -34,8 +34,8 @@ app.get("/signin", async (req, res) => {
 app.post("/authCallback", async (req, res) => {
   try {
     const client = GoogleOAuth({
-      clientId: "287855924003-ltjm1kl378gn9hev6bti0u1jemjge4id.apps.googleusercontent.com",
-      clientSecret: "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",
+      clientId: "",
+      clientSecret: "",
       redirectionUrl: "http://localhost:3000/",
     });
     // here get the gl code 
