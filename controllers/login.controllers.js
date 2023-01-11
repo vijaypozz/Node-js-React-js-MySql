@@ -75,8 +75,8 @@ exports.getLoginUser = (async (req, res) => {
 exports.googleAuthorize = (req, res) => {
     try {
         const client = GoogleOAuth({
-            clientId: "",
-            clientSecret: "",
+            clientId: "287855924003-ltjm1kl378gn9hev6bti0u1jemjge4id.apps.googleusercontent.com",
+            clientSecret: "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",
             redirectionUrl: "http://localhost:3000/",
         });
 

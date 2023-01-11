@@ -6,7 +6,7 @@ const otpGenerator = require('otp-generator')
 //   digits: boolean
 // }
 
-const OTP = otpGenerator.generate(4, { digits: true,lowerCaseAlphabets: false,
+const OTP = otpGenerator.generate(6, { digits: true,lowerCaseAlphabets: false,
   upperCaseAlphabets: false,
   specialChars: false});
 console.log("otp===", OTP);
