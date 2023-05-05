@@ -3,6 +3,9 @@ const app = express();
 const data = require("./data");
 const cors = require("cors");
 const env = require("dotenv")
+const csvParser = require('csv-parser')
+const fs = require('fs')
+
 
 //google url create file(signin screen)
 const { googleAuthorize } = require("./controllers/login.controllers");
@@ -19,7 +22,19 @@ app.use(express.json());
 
 /// simple server
 app.get("/", async (req, res) => {
-  res.send({ message: "server connect to local" });
+  const results = [];
+   fs.createReadStream('./RCF Revised Contact Number data.csv')
+  .pipe(csvParser())
+  .on('data', (data) => results.push(data))
+  .on('end', async () => {
+  let notmatchedlist = await results.filter(
+    (mobile) => !results.some((correctmobileno) => correctmobileno.correct_contact_no === mobile.mobile_no)
+  );
+  console.log("notmatchedlist==", notmatchedlist);
+  //  await  reply.send(notmatchedlist)
+
+  });
+  res.json({ message: "server connect to local" ,f:notmatchedlist});
 });
 
 app.get("/signin", async (req, res) => {
@@ -116,7 +131,10 @@ app.post("/authCallback", async (req, res) => {
   }
 });
 
-
+app.get("/email", async (req, res) => {
+  const {email}=req.body
+  Emailservice(email,res)
+})
 
 //checking localhost connection
 app.listen(port, (error) => {
@@ -134,6 +152,9 @@ const user = require("./routes/user.routes")
 const login = require("./routes/login.routes")
 const vehicleMaster = require("./routes/vehicleMaster.routes")
 const order = require("./routes/order.routes");
+const otp = require("./routes/otp.routes");
+const Emailservice = require("./utils/emailService");
+
 
 
 
@@ -144,3 +165,7 @@ app.use("/api", order)
 
 // V2 check
 app.use("/api", login)
+
+//new v2 otp login
+app.use("/api", otp)
+
