@@ -13,7 +13,7 @@ const a =
           <h1 style="font-size: 24px;">Welcome to My Website</h1>
           <p style="font-size: 16px;">Hi there,</p>
           <p style="font-size: 16px;">Thank you for signing up for my website. Please verify your email address to complete your registration.</p>
-          <a href="#" style="display: inline-block; background-color: #4caf50; color: #fff; padding: 10px 20px; text-decoration: none; font-size: 16px; border-radius: 5px; margin-top: 20px;">Verify Email Address</a>
+          <a href="https://verifalia.com/validate-email" style="display: inline-block; background-color: #4caf50; color: #fff; padding: 10px 20px; text-decoration: none; font-size: 16px; border-radius: 5px; margin-top: 20px;">Verify Email Address</a>
         </td>
       </tr>
       <tr>

@@ -23,7 +23,7 @@ const Emailservice = (async (email, res, next) => {
     var mailOptions = {
       from:"vijays04042000@gmail.com",
       to: email,
-      subject: "Checking The Mail",
+      subject: "Verify Your Account",
       html: message,
     };
   
@@ -34,7 +34,7 @@ const Emailservice = (async (email, res, next) => {
         console.log("Email sent: " + info.response);
       }
     });
-    res.status(200).send("Email Send to user succesfully");
+    res.status(200).send({message:"Email Send to user succesfully"});
 
 
 })
